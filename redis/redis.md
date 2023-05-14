@@ -1,5 +1,7 @@
 # redis 是什么
 
+Key-Value键值对
+
 # redis配置文件
 
 ```shell
@@ -1741,7 +1743,7 @@ aof-load-truncated yes
 确定是否为主从
 
 ```shell
-[root@hadoop102 /]# /usr/local/bin/redis-cli 
+[root@hadoop102 /]# / 
 127.0.0.1:6379> info replication
 NOAUTH Authentication required.
 127.0.0.1:6379> info replication 
