@@ -1391,6 +1391,8 @@ rdb-save-incremental-fsync yes
 
 
 ```
+gcc -v
+
 wget http://download.redis.io/releases/redis-5.0.4.tar.gz
 
 make
@@ -1400,8 +1402,15 @@ make distclean
 make install
 
 yum install gcc-c++
+```
 
+修改配置文件redis.conf
 
+```
+#bind 127.0.0.1 -::1 注释掉
+daemonize yes 从no改成yes
+protected-mode no 从yes改成no
+requirepass 123456 密码 123456
 ```
 
 
@@ -1410,7 +1419,9 @@ yum install gcc-c++
 
 cd /usr/local/bin/
 
-redis-server 
+```
+/usr/local/bin/redis-server /home/soft/myredis/redis.conf
+```
 
 看到启动图标表示为前端启动
 
@@ -1801,9 +1812,38 @@ auth 123456
 info replication 
 ```
 
+# redis造数据
 
 
 
+```
+1665967
+1665968
+1665969
+1665970
+1665971
+Exception in thread "main" redis.clients.jedis.exceptions.JedisConnectionException: java.net.SocketTimeoutException: Read timed out
+	at redis.clients.jedis.util.RedisInputStream.ensureFill(RedisInputStream.java:205)
+	at redis.clients.jedis.util.RedisInputStream.readByte(RedisInputStream.java:43)
+	at redis.clients.jedis.Protocol.process(Protocol.java:154)
+	at redis.clients.jedis.Protocol.read(Protocol.java:219)
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:309)
+	at redis.clients.jedis.Connection.getStatusCodeReply(Connection.java:236)
+	at redis.clients.jedis.Jedis.set(Jedis.java:149)
+	at com.google.TestRedis.main(TestRedis.java:20)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.net.SocketInputStream.read(SocketInputStream.java:127)
+	at redis.clients.jedis.util.RedisInputStream.ensureFill(RedisInputStream.java:199)
+	... 7 more
+Disconnected from the target VM, address: '127.0.0.1:61553', transport: 'socket'
+
+Process finished with exit code 1
+
+```
 
 
 
