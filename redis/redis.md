@@ -1421,6 +1421,9 @@ cd /usr/local/bin/
 
 ```
 /usr/local/bin/redis-server /home/soft/myredis/redis.conf
+
+
+cd /usr/local/bin/
 ```
 
 看到启动图标表示为前端启动
